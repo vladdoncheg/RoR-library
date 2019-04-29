@@ -1,0 +1,59 @@
+<%= form_with(model: worker, local: true) do |form| %>
+  <% if worker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(worker.errors.count, "error") %> prohibited this worker from being saved:</h2>
+
+      <ul>
+      <% worker.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :firstname %>
+    <%= form.text_field :firstname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fathername %>
+    <%= form.text_field :fathername %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birthday %>
+    <%= form.date_select :birthday %>
+  </div>
+
+  <div class="field">
+    <%= form.label :workdate %>
+    <%= form.date_select :workdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_area :position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :education %>
+    <%= form.text_area :education %>
+  </div>
+
+  <div class="field">
+    <%= form.label(:lib_id, 'Lib ID') %>
+    <%= link_to '(list)', libs_path %>
+    <br>
+    <%= form.text_field :lib_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

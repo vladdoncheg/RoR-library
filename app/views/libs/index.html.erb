@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Libs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Adress</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @libs.each do |lib| %>
+      <tr>
+        <td><%= lib.id %></td>
+        <td><%= lib.number %></td>
+        <td><%= lib.name %></td>
+        <td><%= lib.adress %></td>
+        <td><%= link_to 'Show', lib %></td>
+        <td><%= link_to 'Edit', edit_lib_path(lib) %></td>
+        <td><%= link_to 'Destroy', lib, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lib', new_lib_path %>
+<br>
+<%= link_to 'Home', root_path %>
+

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ID:</strong>
+  <%= @lib.id %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @lib.number %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lib.name %>
+</p>
+
+<p>
+  <strong>Adress:</strong>
+  <%= @lib.adress %>
+</p>
+
+<%= link_to 'Edit', edit_lib_path(@lib) %> |
+<%= link_to 'Back', libs_path %>
