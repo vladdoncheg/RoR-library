@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Readers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>Fathername</th>
+      <th>Adress</th>
+      <th>Phone</th>
+      <th>Lib ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @readers.each do |reader| %>
+      <tr>
+        <td><%= reader.number %></td>
+        <td><%= reader.lastname %></td>
+        <td><%= reader.firstname %></td>
+        <td><%= reader.fathername %></td>
+        <td><%= reader.adress %></td>
+        <td><%= reader.phone %></td>
+        <td><%= reader.lib.name %></td>
+        <td><%= link_to 'Show', reader %></td>
+        <td><%= link_to 'Edit', edit_reader_path(reader) %></td>
+        <td><%= link_to 'Destroy', reader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reader', new_reader_path %>
+<br>
+<%= link_to 'Home', root_path %>
