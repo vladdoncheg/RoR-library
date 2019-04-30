@@ -1,0 +1,41 @@
+<%= form_with(model: serv, local: true) do |form| %>
+  <% if serv.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(serv.errors.count, "error") %> prohibited this serv from being saved:</h2>
+
+      <ul>
+      <% serv.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :book_id, 'Book ID' %>
+    <%= link_to '(list)', books_path %>
+    <br>
+    <%= form.text_field :book_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reader_id, 'Reader ID' %>
+    <%= link_to '(list)', readers_path %>
+    <br>
+    <%= form.text_field :reader_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start %>
+    <%= form.date_select :start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finish %>
+    <%= form.date_select :finish %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

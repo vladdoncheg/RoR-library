@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Author</th>
       <th>Code</th>
@@ -20,6 +21,7 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
+        <td><%= book.id %></td>
         <td><%= book.name %></td>
         <td><%= book.author %></td>
         <td><%= book.code %></td>
@@ -39,3 +41,5 @@
 <br>
 
 <%= link_to 'New Book', new_book_path %>
+<br>
+<%= link_to 'Home', root_path %>

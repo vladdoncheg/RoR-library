@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book ID:</strong>
+  <%= @serv.book.id %>
+</p>
+
+<p>
+  <strong>Reader ID:</strong>
+  <%= @serv.reader.id %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @serv.start %>
+</p>
+
+<p>
+  <strong>Finish:</strong>
+  <%= @serv.finish %>
+</p>
+
+<%= link_to 'Edit', edit_serv_path(@serv) %> |
+<%= link_to 'Back', servs_path %>

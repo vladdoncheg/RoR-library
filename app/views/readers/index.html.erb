@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Number</th>
       <th>Lastname</th>
       <th>Firstname</th>
@@ -19,6 +20,7 @@
   <tbody>
     <% @readers.each do |reader| %>
       <tr>
+        <td><%= reader.id %></td>
         <td><%= reader.number %></td>
         <td><%= reader.lastname %></td>
         <td><%= reader.firstname %></td>
