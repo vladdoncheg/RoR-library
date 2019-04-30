@@ -6,7 +6,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.string :code
       t.string :publisher
       t.integer :year
-      t.integer :price
+      t.decimal :price, precision: 10, scale: 2
       t.date :date
       t.references :lib, foreign_key: true
 
