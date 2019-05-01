@@ -12,6 +12,13 @@
   <% end %>
 
   <div class="field">
+    <%= form.label(:lib_id, 'Lib ID') %>
+    <%= form.number_field :lib_id, :step => 1 %>
+    <br>
+    <%= link_to 'List of libraries', libs_path %>
+  </div>
+
+  <div class="field">
     <%= form.label :lastname %>
     <%= form.text_field :lastname %>
   </div>
@@ -28,12 +35,12 @@
 
   <div class="field">
     <%= form.label :birthday %>
-    <%= form.date_select :birthday %>
+    <%= form.date_select :birthday, {order: [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year-14, end_year: Date.today.year - 100} %>
   </div>
 
   <div class="field">
     <%= form.label :workdate %>
-    <%= form.date_select :workdate %>
+    <%= form.date_select :workdate, {order: [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year - 100} %>
   </div>
 
   <div class="field">
@@ -43,14 +50,7 @@
 
   <div class="field">
     <%= form.label :education %>
-    <%= form.text_area :education %>
-  </div>
-
-  <div class="field">
-    <%= form.label(:lib_id, 'Lib ID') %>
-    <%= link_to '(list)', libs_path %>
-    <br>
-    <%= form.text_field :lib_id %>
+    <%= form.text_field :education %>
   </div>
 
   <div class="actions">

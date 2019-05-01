@@ -13,26 +13,24 @@
 
   <div class="field">
     <%= form.label :book_id, 'Book ID' %>
-    <%= link_to '(list)', books_path %>
-    <br>
-    <%= form.text_field :book_id %>
+    <%= form.number_field :book_id, :step => 1 %><br>
+    <%= link_to 'List of books', books_path %>
   </div>
 
   <div class="field">
     <%= form.label :reader_id, 'Reader ID' %>
-    <%= link_to '(list)', readers_path %>
-    <br>
-    <%= form.text_field :reader_id %>
+    <%= form.number_field :reader_id, :step => 1 %><br>
+    <%= link_to 'List of readers', readers_path %>
   </div>
 
   <div class="field">
     <%= form.label :start %>
-    <%= form.date_select :start %>
+    <%= form.date_select :start, {order: [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year - 100} %>
   </div>
 
   <div class="field">
     <%= form.label :finish %>
-    <%= form.date_select :finish %>
+    <%= form.date_select :finish, {order: [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year - 100} %>
   </div>
 
   <div class="actions">

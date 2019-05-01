@@ -12,8 +12,15 @@
   <% end %>
 
   <div class="field">
+    <%= form.label(:lib_id, 'Lib ID') %>
+    <%= form.number_field :lib_id, :step => 1 %>
+    <br>
+    <%= link_to 'List of libraries', libs_path %>
+  </div>
+
+  <div class="field">
     <%= form.label :number %>
-    <%= form.number_field :number %>
+    <%= form.number_field :number, :step => 1 %>
   </div>
 
   <div class="field">
@@ -38,14 +45,7 @@
 
   <div class="field">
     <%= form.label :phone %>
-    <%= form.number_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label(:lib_id, 'Lib ID') %>
-    <%= link_to '(list)', libs_path %>
-    <br>
-    <%= form.text_field :lib_id %>
+    <%= form.telephone_field :phone %>
   </div>
 
   <div class="actions">
