@@ -1,0 +1,16 @@
+<h1>Топ-10 книг в библиотеке <<%= @lib.name %>></h1>
+<br>
+<% @servs.group(:book_id).limit(10).order('count_all desc').count.each do |x| %>
+  <strong>Книга:</strong>
+  <% book_id = x.first %>
+  <% Book.where('id' => book_id).each do |y| %>
+    <%= link_to y.name, lib_book_path(@lib, book_id) %>
+  <% end %>
+  <br>
+  <strong>Выдана раз:</strong>
+  <%= x.second %>
+  <br>
+  <br>
+<% end %>
+<hr>
+<%= link_to 'Назад', lib_path(@lib) %>

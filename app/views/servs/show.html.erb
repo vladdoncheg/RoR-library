@@ -1,24 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Book ID:</strong>
-  <%= @serv.book.id %>
-</p>
+<h1>Информация о выдаче</h1>
 
 <p>
-  <strong>Reader ID:</strong>
-  <%= @serv.reader.id %>
-</p>
-
-<p>
-  <strong>Start:</strong>
+  <strong>Дата выдачи:</strong>
   <%= @serv.start %>
 </p>
 
 <p>
-  <strong>Finish:</strong>
+  <strong>Дата возврата:</strong>
   <%= @serv.finish %>
 </p>
 
-<%= link_to 'Edit', edit_serv_path(@serv) %> |
-<%= link_to 'Back', servs_path %>
+<hr>
+
+<%= link_to 'Изменить', {:controller => :servs, :action => :edit}, :params => {:book_id => @serv.book, :id => @serv} %> |
+<%= link_to 'Удалить', [@serv.book.lib, @serv.book, @serv], method: :delete, data: { confirm: 'Ты уверен?' } %>
+<br>
+<%= link_to 'Назад', lib_book_servs_path %>

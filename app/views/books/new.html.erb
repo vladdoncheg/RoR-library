@@ -1,5 +1,5 @@
-<h1>New Book</h1>
+<h1>Добавление книги</h1>
 
-<%= render 'form', book: @book, lib: @lib %>
+<%= render 'form', book: @book, x: lib_books_path %>
 
-<%= link_to 'Back', books_path %>
+<%= link_to 'Назад', lib_books_path(@lib) %>

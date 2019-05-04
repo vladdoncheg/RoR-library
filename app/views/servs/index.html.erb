@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Servs</h1>
+<h1>Выдачи</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Book ID</th>
-      <th>Reader ID</th>
-      <th>Start</th>
-      <th>Finish</th>
+      <th>Дата выдачи</th>
+      <th>Дата возврата</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,20 +14,18 @@
   <tbody>
     <% @servs.each do |serv| %>
       <tr>
-        <td><%= serv.book.id %></td>
-        <td><%= serv.reader.id %></td>
         <td><%= serv.start %></td>
         <td><%= serv.finish %></td>
-        <td><%= link_to 'Show', serv %></td>
-        <td><%= link_to 'Edit', edit_serv_path(serv) %></td>
-        <td><%= link_to 'Destroy', serv, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', lib_book_serv_path(serv.book.lib, serv.book, serv) %></td>
+        <td><%= link_to 'Изменить', edit_lib_book_serv_path(serv.book.lib, serv.book, serv) %></td>
+        <td><%= link_to 'Удалить', [serv.book.lib, serv.book, serv], method: :delete, data: { confirm: 'Ты уверен?' } %></td>
       </tr>
     <% end %>
-  </tbody>
+  </tbody>        
 </table>
 
+<hr>
+<%= link_to 'Добавить выдачу', new_lib_book_serv_path(@book.lib, @book) %>
 <br>
-
-<%= link_to 'New Serv', new_serv_path %>
-<br>
-<%= link_to 'Home', root_path %>
+<%= link_to 'Главная', root_path %> |
+<%= link_to 'Назад', lib_book_path(@book.lib, @book) %>

@@ -1,14 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Libs</h1>
+<h1>Список библиотек</h1>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Number</th>
-      <th>Name</th>
-      <th>Adress</th>
+      <th>Номер</th>
+      <th>Наименование</th>
+      <th>Адрес</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,21 +15,20 @@
   <tbody>
     <% @libs.each do |lib| %>
       <tr>
-        <td><%= lib.id %></td>
         <td><%= lib.number %></td>
         <td><%= lib.name %></td>
         <td><%= lib.adress %></td>
-        <td><%= link_to 'Show', lib %></td>
-        <td><%= link_to 'Edit', edit_lib_path(lib) %></td>
-        <td><%= link_to 'Destroy', lib, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', lib %></td>
+        <td><%= link_to 'Изменить', edit_lib_path(lib) %></td>
+        <td><%= link_to 'Удалить', lib, method: :delete, data: { confirm: 'Ты уверен?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<hr>
 
-<%= link_to 'New Lib', new_lib_path %>
+<%= link_to 'Добавить библиотеку', new_lib_path %>
 <br>
-<%= link_to 'Home', root_path %>
+<%= link_to 'Главная страница', root_path %>
 

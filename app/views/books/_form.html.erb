@@ -1,4 +1,4 @@
-<%= form_with(model: book, local: true) do |form| %>
+<%= form_for book, url: x do |form| %>
   <% if book.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
@@ -12,48 +12,41 @@
   <% end %>
 
   <div class="field">
-    <%= form.label(:lib_id, 'Lib ID') %>
-    <%= form.number_field :lib_id, :step => 1 %>
-    <br>
-    <%= link_to 'List of libraries', libs_path %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Наименование' %>
     <%= form.text_area :name %>
   </div>
 
   <div class="field">
-    <%= form.label :author %>
+    <%= form.label :author, 'Автор' %>
     <%= form.text_area :author %>
   </div>
 
   <div class="field">
-    <%= form.label :code %>
+    <%= form.label :code, 'Шифр' %>
     <%= form.text_field :code %>
   </div>
 
   <div class="field">
-    <%= form.label :publisher %>
+    <%= form.label :publisher, 'Издательство' %>
     <%= form.text_area :publisher %>
   </div>
 
   <div class="field">
-    <%= form.label :year %>
+    <%= form.label :year, 'Год издания' %>
     <%= form.number_field :year, :step => 1 %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
+    <%= form.label :price, 'Цена' %>
     <%= form.number_field :price, :step => 0.01 %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date, {order: [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year - 100} %>
+    <%= form.label :date, 'Дата поступления' %>
+    <%= form.date_select :date, {order: [:day, :month, :year], prompt: { day: 'День', month: 'Месяц', year: 'Год' }, start_year: Date.today.year, end_year: Date.today.year - 100} %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Подтвердить' %>
   </div>
 <% end %>

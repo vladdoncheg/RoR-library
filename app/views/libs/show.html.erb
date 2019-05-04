@@ -1,24 +1,48 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>ID:</strong>
-  <%= @lib.id %>
+  <h1><%= @lib.name %></h1>
 </p>
-
 <p>
-  <strong>Number:</strong>
+  <strong>Номер:</strong>
   <%= @lib.number %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @lib.name %>
-</p>
-
-<p>
-  <strong>Adress:</strong>
+  <strong>Адрес:</strong>
   <%= @lib.adress %>
 </p>
 
-<%= link_to 'Edit', edit_lib_path(@lib) %> |
-<%= link_to 'Back', libs_path %>
+<p>
+  <%= link_to 'Изменить', edit_lib_path(@lib) %> |
+  <%= link_to 'Удалить', @lib, method: :delete, data: { confirm: 'Ты уверен?' } %>
+</p>
+
+<hr>
+
+<p>
+  <strong>Сотрудники:</strong>
+  <%= @lib.workers.count %>
+  <%= link_to 'Показать', lib_workers_path(@lib) %> |
+  <%= link_to 'Добавить', new_lib_worker_path(@lib) %>
+</p>
+
+<p>
+  <strong>Абоненты:</strong>
+  <%= @lib.readers.count %>
+  <%= link_to 'Показать', lib_readers_path(@lib) %> |
+  <%= link_to 'Добавить', new_lib_reader_path(@lib) %>
+</p>
+
+<p>
+  <strong>Книги:</strong>
+  <%= @lib.books.count %>
+  <%= link_to 'Показать', lib_books_path(@lib) %> |
+  <%= link_to 'Добавить', new_lib_book_path(@lib) %>
+</p>
+
+<hr>
+
+<%= link_to 'Топ-10 книг', top_path(@lib) %>
+<br>
+<%= link_to 'К списку библиотек', libs_path %>

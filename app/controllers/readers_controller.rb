@@ -2,24 +2,27 @@ class ReadersController < ApplicationController
   before_action :set_reader, only: [:show, :edit, :update, :destroy]
 
   def index
-    @readers = Reader.all
+    @lib = Lib.find(params[:lib_id])
+    @readers = @lib.readers.all
   end
 
   def show
   end
 
   def new
-    @reader = Reader.new
+    @lib = Lib.find(params[:lib_id])
+    @reader = @lib.readers.new
   end
 
   def edit
   end
 
   def create
-    @reader = Reader.new(reader_params)
+    @lib = Lib.find(params[:lib_id])
+    @reader = @lib.readers.new(reader_params)
 
     if @reader.save
-      redirect_to @reader, notice: 'Reader was successfully created.'
+      redirect_to lib_readers_path, notice: 'Абонент успешно добавлен в библиотеку.'
     else
       render :new
     end
@@ -27,7 +30,7 @@ class ReadersController < ApplicationController
 
   def update
     if @reader.update(reader_params)
-      redirect_to @reader, notice: 'Reader was successfully updated.'
+      redirect_to lib_reader_path, notice: 'Информация об абоненте успешно обновлена.'
     else
       render :edit
     end
@@ -35,12 +38,13 @@ class ReadersController < ApplicationController
 
   def destroy
     @reader.destroy
-    redirect_to readers_url, notice: 'Reader was successfully destroyed.'
+    redirect_to lib_readers_path, notice: 'Абонент успешно удалён из библиотеки.'
   end
 
   private
     def set_reader
-      @reader = Reader.find(params[:id])
+      @lib = Lib.find(params[:lib_id])
+      @reader = @lib.readers.find(params[:id])
     end
 
     def reader_params

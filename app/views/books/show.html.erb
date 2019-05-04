@@ -1,49 +1,51 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>ID:</strong>
-  <%= @book.id %>
+  <h1>Информация о книге</h1>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Наименование:</strong>
   <%= @book.name %>
 </p>
 
 <p>
-  <strong>Author:</strong>
+  <strong>Автор:</strong>
   <%= @book.author %>
 </p>
 
 <p>
-  <strong>Code:</strong>
+  <strong>Шифр:</strong>
   <%= @book.code %>
 </p>
 
 <p>
-  <strong>Publisher:</strong>
+  <strong>Издательство:</strong>
   <%= @book.publisher %>
 </p>
 
 <p>
-  <strong>Year:</strong>
+  <strong>Год издания:</strong>
   <%= @book.year %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Цена:</strong>
   <%= @book.price %>
 </p>
 
 <p>
-  <strong>Date:</strong>
+  <strong>Дата поступления:</strong>
   <%= @book.date %>
 </p>
 
-<p>
-  <strong>Lib:</strong>
-  <%= @book.lib.name %>
-</p>
+<hr>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Выдачи', lib_book_servs_path(@lib, @book) %> |
+<%= link_to 'Добавить выдачу', new_lib_book_serv_path(@lib, @book) %>
+<br>
+<%= link_to 'Изменить', {:controller => :books, :action => :edit}, :params => {:lib_id => @book.lib, :id => @book} %> |
+<%= link_to 'Удалить', [@book.lib, @book], method: :delete, data: { confirm: 'Ты уверен?' } %>
+<br>
+<%= link_to 'Назад', lib_books_path %>
+

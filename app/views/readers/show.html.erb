@@ -1,44 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>ID:</strong>
-  <%= @reader.id %>
+  <h1>Информация об абоненте</h1>
 </p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер билета:</strong>
   <%= @reader.number %>
 </p>
 
 <p>
-  <strong>Lastname:</strong>
+  <strong>Фамилия:</strong>
   <%= @reader.lastname %>
 </p>
 
 <p>
-  <strong>Firstname:</strong>
+  <strong>Имя:</strong>
   <%= @reader.firstname %>
 </p>
 
 <p>
-  <strong>Fathername:</strong>
+  <strong>Отчество:</strong>
   <%= @reader.fathername %>
 </p>
 
 <p>
-  <strong>Adress:</strong>
+  <strong>Адрес:</strong>
   <%= @reader.adress %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>Телефон:</strong>
   <%= @reader.phone %>
 </p>
 
-<p>
-  <strong>Lib:</strong>
-  <%= @reader.lib.name %>
-</p>
+<hr>
 
-<%= link_to 'Edit', edit_reader_path(@reader) %> |
-<%= link_to 'Back', readers_path %>
+<%= link_to 'Изменить', {:controller => :readers, :action => :edit}, :params => {:lib_id => @reader.lib, :id => @reader} %> |
+<%= link_to 'Удалить', [@reader.lib, @reader], method: :delete, data: { confirm: 'Ты уверен?' } %>
+<br>
+<%= link_to 'Назад', lib_readers_path %>

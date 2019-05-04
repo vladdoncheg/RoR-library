@@ -5,8 +5,10 @@ class Serv < ApplicationRecord
   validates :start, presence: true
 
   def finish_cannot_be_lower_than_start
-    if finish < start
-      errors.add(:finish, "can't be lower than start")
+    if finish
+      if finish < start
+        errors.add(:finish, "can't be lower than start")
+      end
     end
   end 
 end

@@ -1,4 +1,4 @@
-<%= form_with(model: reader, local: true) do |form| %>
+<%= form_for reader, url: x do |form| %>
   <% if reader.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(reader.errors.count, "error") %> prohibited this reader from being saved:</h2>
@@ -12,43 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= form.label(:lib_id, 'Lib ID') %>
-    <%= form.number_field :lib_id, :step => 1 %>
-    <br>
-    <%= link_to 'List of libraries', libs_path %>
-  </div>
-
-  <div class="field">
-    <%= form.label :number %>
+    <%= form.label :number, 'Номер билета' %>
     <%= form.number_field :number, :step => 1 %>
   </div>
 
   <div class="field">
-    <%= form.label :lastname %>
+    <%= form.label :lastname, 'Фамилия' %>
     <%= form.text_field :lastname %>
   </div>
 
   <div class="field">
-    <%= form.label :firstname %>
+    <%= form.label :firstname, 'Имя' %>
     <%= form.text_field :firstname %>
   </div>
 
   <div class="field">
-    <%= form.label :fathername %>
+    <%= form.label :fathername, 'Отчество' %>
     <%= form.text_field :fathername %>
   </div>
 
   <div class="field">
-    <%= form.label :adress %>
+    <%= form.label :adress, 'Адрес' %>
     <%= form.text_area :adress %>
   </div>
 
   <div class="field">
-    <%= form.label :phone %>
+    <%= form.label :phone, 'Телефон' %>
     <%= form.telephone_field :phone %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Подтвердить' %>
   </div>
 <% end %>

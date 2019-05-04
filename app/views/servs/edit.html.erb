@@ -1,6 +1,5 @@
-<h1>Editing Serv</h1>
+<h1>Редактирование выдачи</h1>
 
-<%= render 'form', serv: @serv %>
+<%= render 'form', serv: @serv, x: lib_book_serv_path(@serv.book.lib, @serv.book, @serv)%>
 
-<%= link_to 'Show', @serv %> |
-<%= link_to 'Back', servs_path %>
+<%= link_to 'Назад', lib_book_serv_path(@serv.book.lib, @serv.book, @serv) %>

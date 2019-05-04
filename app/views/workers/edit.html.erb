@@ -1,6 +1,5 @@
-<h1>Editing Worker</h1>
+<h1>Редактирование сотрудника</h1>
 
-<%= render 'form', worker: @worker %>
+<%= render 'form', worker: @worker, x: lib_worker_path(@worker.lib, @worker)%>
 
-<%= link_to 'Show', @worker %> |
-<%= link_to 'Back', workers_path %>
+<%= link_to 'Назад', lib_worker_path(@worker.lib, @worker) %>

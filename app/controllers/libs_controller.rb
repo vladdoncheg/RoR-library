@@ -19,7 +19,7 @@ class LibsController < ApplicationController
     @lib = Lib.new(lib_params)
 
     if @lib.save
-      redirect_to @lib, notice: 'Lib was successfully created.'
+      redirect_to @lib, notice: 'Библиотека успешно добавлена.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class LibsController < ApplicationController
 
   def update
     if @lib.update(lib_params)
-      redirect_to @lib, notice: 'Lib was successfully updated.'
+      redirect_to @lib, notice: 'Информация о библиотеке успешно обновлена.'
     else
       render :edit
     end
@@ -35,7 +35,12 @@ class LibsController < ApplicationController
 
   def destroy
     @lib.destroy
-    redirect_to libs_url, notice: 'Lib was successfully destroyed.'
+    redirect_to libs_url, notice: 'Библиотека успешно удалена.'
+  end
+
+  def top
+    @lib = Lib.find(params[:id])
+    @servs = @lib.servs
   end
 
   private
@@ -46,4 +51,5 @@ class LibsController < ApplicationController
     def lib_params
       params.require(:lib).permit(:number, :name, :adress)
     end
+    
 end

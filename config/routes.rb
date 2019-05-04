@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  resources :servs
-  resources :books
-  resources :readers
   get 'welcome/index'
+  get '/libs/:id/top' => 'libs#top', as: 'top'
 
   root 'welcome#index'
-  resources :workers
-  resources :libs
+  
+  resources :libs do
+    resources :books do
+      resources :servs
+    end
+    resources :readers
+    resources :workers
+  end
 end

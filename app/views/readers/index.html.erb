@@ -1,18 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Readers</h1>
+<h1>Список абонентов библиотеки <<%= @lib.name %>></h1>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Number</th>
-      <th>Lastname</th>
-      <th>Firstname</th>
-      <th>Fathername</th>
-      <th>Adress</th>
-      <th>Phone</th>
-      <th>Lib</th>
+      <th>Номер билета</th>
+      <th>Фамилия</th>
+      <th>Имя</th>
+      <th>Отчество</th>
+      <th>Адрес</th>
+      <th>Телефон</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,24 +18,23 @@
   <tbody>
     <% @readers.each do |reader| %>
       <tr>
-        <td><%= reader.id %></td>
         <td><%= reader.number %></td>
         <td><%= reader.lastname %></td>
         <td><%= reader.firstname %></td>
         <td><%= reader.fathername %></td>
         <td><%= reader.adress %></td>
         <td><%= reader.phone %></td>
-        <td><%= reader.lib.name %></td>
-        <td><%= link_to 'Show', reader %></td>
-        <td><%= link_to 'Edit', edit_reader_path(reader) %></td>
-        <td><%= link_to 'Destroy', reader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', lib_reader_path(reader.lib, reader) %></td>
+        <td><%= link_to 'Изменить', edit_lib_reader_path(reader.lib, reader) %></td>
+        <td><%= link_to 'Удалить', [reader.lib, reader], method: :delete, data: { confirm: 'Ты уверен?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<hr>
 
-<%= link_to 'New Reader', new_reader_path %>
+<%= link_to 'Добавить абонента', new_lib_reader_path(@lib) %>
 <br>
-<%= link_to 'Home', root_path %>
+<%= link_to 'Главная', root_path %> |
+<%= link_to 'Назад', lib_path(@lib) %>

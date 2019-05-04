@@ -1,19 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Workers</h1>
+<h1>Список сотрудников библиотеки <<%= @lib.name %>></h1>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Lastname</th>
-      <th>Firstname</th>
-      <th>Fathername</th>
-      <th>Birthday</th>
-      <th>Workdate</th>
-      <th>Position</th>
-      <th>Education</th>
-      <th>Lib</th>
+      <th>Фамилия</th>
+      <th>Имя</th>
+      <th>Отчество</th>
+      <th>Дата рождения</th>
+      <th>Дата принятия на работу</th>
+      <th>Должность</th>
+      <th>Образование</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +19,6 @@
   <tbody>
     <% @workers.each do |worker| %>
       <tr>
-        <td><%= worker.id %></td>
         <td><%= worker.lastname %></td>
         <td><%= worker.firstname %></td>
         <td><%= worker.fathername %></td>
@@ -29,17 +26,15 @@
         <td><%= worker.workdate %></td>
         <td><%= worker.position %></td>
         <td><%= worker.education %></td>
-        <td><%= worker.lib.name %></td>
-        <td><%= link_to 'Show', worker %></td>
-        <td><%= link_to 'Edit', edit_worker_path(worker) %></td>
-        <td><%= link_to 'Destroy', worker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= link_to 'Показать', lib_worker_path(worker.lib, worker) %></td>
+        <td><%= link_to 'Изменить', edit_lib_worker_path(worker.lib, worker) %></td>
+        <td><%= link_to 'Удалить', [worker.lib, worker], method: :delete, data: { confirm: 'Ты уверен?' } %></td>      </tr>
     <% end %>
   </tbody>
 </table>
 
+<hr>
+<%= link_to 'Добавить сотрудника', new_lib_worker_path(@lib) %>
 <br>
-
-<%= link_to 'New Worker', new_worker_path %>
-<br>
-<%= link_to 'Home', root_path %>
+<%= link_to 'Главная', root_path %> |
+<%= link_to 'Назад', lib_path(@lib) %>

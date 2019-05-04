@@ -1,33 +1,28 @@
 class WorkersController < ApplicationController
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
 
-  # GET /workers
-  # GET /workers.json
   def index
-    @workers = Worker.all
+    @lib = Lib.find(params[:lib_id])
+    @workers = @lib.workers.all
   end
 
-  # GET /workers/1
-  # GET /workers/1.json
   def show
   end
 
-  # GET /workers/new
   def new
-    @worker = Worker.new
+    @lib = Lib.find(params[:lib_id])
+    @worker = @lib.workers.new
   end
 
-  # GET /workers/1/edit
   def edit
   end
 
-  # POST /workers
-  # POST /workers.json
   def create
-    @worker = Worker.new(worker_params)
+    @lib = Lib.find(params[:lib_id])
+    @worker = @lib.workers.new(worker_params)
 
     if @worker.save
-      redirect_to @worker, notice: 'Worker was successfully created.'
+      redirect_to lib_workers_path, notice: 'Сотрудник успешно добавлен в библиотеку.'
     else
       render :new
     end
@@ -35,7 +30,7 @@ class WorkersController < ApplicationController
 
   def update
     if @worker.update(worker_params)
-      redirect_to @worker, notice: 'Worker was successfully updated.'
+      redirect_to lib_worker_path, notice: 'Информация о сотруднике успешно обновлена.'
     else
       render :edit
     end
@@ -43,12 +38,13 @@ class WorkersController < ApplicationController
 
   def destroy
     @worker.destroy
-    redirect_to workers_url, notice: 'Worker was successfully destroyed.'
+    redirect_to lib_workers_path, notice: 'Сотрудник успешно удалён из библиотеки.'
   end
 
   private
     def set_worker
-      @worker = Worker.find(params[:id])
+      @lib = Lib.find(params[:lib_id])
+      @worker = @lib.workers.find(params[:id])
     end
 
     def worker_params

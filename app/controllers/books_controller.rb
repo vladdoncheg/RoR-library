@@ -2,24 +2,27 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.all
+    @lib = Lib.find(params[:lib_id])
+    @books = @lib.books.all
   end
 
   def show
   end
 
   def new
-    @book = Book.new
+    @lib = Lib.find(params[:lib_id])
+    @book = @lib.books.new
   end
 
   def edit
   end
 
   def create
-    @book = Book.new(book_params)
+    @lib = Lib.find(params[:lib_id])
+    @book = @lib.books.new(book_params)
 
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to lib_books_path, notice: 'Книга успешно добавлена в библиотеку.'
     else
       render :new
     end
@@ -27,7 +30,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: 'Book was successfully updated.'
+      redirect_to lib_book_path, notice: 'Информация о книге успешно обновлена.'
     else
       render :edit
     end
@@ -35,12 +38,13 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+    redirect_to lib_books_path, notice: 'Книга успешно удалена из библиотеки.'
   end
 
   private
     def set_book
-      @book = Book.find(params[:id])
+      @lib = Lib.find(params[:lib_id])
+      @book = @lib.books.find(params[:id])
     end
 
     def book_params

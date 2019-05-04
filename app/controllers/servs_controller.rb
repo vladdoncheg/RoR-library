@@ -2,24 +2,31 @@ class ServsController < ApplicationController
   before_action :set_serv, only: [:show, :edit, :update, :destroy]
 
   def index
-    @servs = Serv.all
+    @book = Book.find(params[:book_id])
+    @servs = @book.servs.all
   end
 
   def show
   end
 
   def new
-    @serv = Serv.new
+    @book = Book.find(params[:book_id])
+    @serv = @book.servs.new
+    @lib = @book.lib
+    @reader = @lib.readers
   end
 
   def edit
+    @lib = @book.lib
+    @reader = @lib.readers
   end
 
   def create
-    @serv = Serv.new(serv_params)
+    @book = Book.find(params[:book_id])
+    @serv = @book.servs.new(serv_params)
 
     if @serv.save
-       redirect_to @serv, notice: 'Serv was successfully created.'
+      redirect_to lib_book_servs_path, notice: 'Книга успешно добавлена в библиотеку.'
     else
       render :new
     end
@@ -27,7 +34,7 @@ class ServsController < ApplicationController
 
   def update
     if @serv.update(serv_params)
-      redirect_to @serv, notice: 'Serv was successfully updated.'
+      redirect_to lib_book_serv_path, notice: 'Инфорация успешно обновлена.'
     else
       render :edit
     end
@@ -35,12 +42,13 @@ class ServsController < ApplicationController
 
   def destroy
     @serv.destroy
-    redirect_to servs_url, notice: 'Serv was successfully destroyed.'
+    redirect_to lib_book_servs_url, notice: 'Информация успешно удалена.'
   end
 
   private
     def set_serv
-      @serv = Serv.find(params[:id])
+      @book = Book.find(params[:book_id])
+      @serv = @book.servs.find(params[:id])
     end
 
     def serv_params

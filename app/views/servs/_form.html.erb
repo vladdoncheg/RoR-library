@@ -1,4 +1,4 @@
-<%= form_with(model: serv, local: true) do |form| %>
+<%= form_for serv, url: x do |form| %>
   <% if serv.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(serv.errors.count, "error") %> prohibited this serv from being saved:</h2>
@@ -12,28 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :book_id, 'Book ID' %>
-    <%= form.number_field :book_id, :step => 1 %><br>
-    <%= link_to 'List of books', books_path %>
+    <%= form.label :reader_id, 'Абонент' %>
+    <%= form.collection_select(:reader_id, @reader, :id, :firstname, prompt: true) %>
   </div>
 
   <div class="field">
-    <%= form.label :reader_id, 'Reader ID' %>
-    <%= form.number_field :reader_id, :step => 1 %><br>
-    <%= link_to 'List of readers', readers_path %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start %>
+    <%= form.label :start, 'Дата выдачи' %>
     <%= form.date_select :start, {order: [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year - 100} %>
   </div>
 
   <div class="field">
-    <%= form.label :finish %>
+    <%= form.label :finish, 'Дата возврата' %>
     <%= form.date_select :finish, {order: [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year - 100} %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Подтвердить' %>
   </div>
 <% end %>

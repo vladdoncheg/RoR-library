@@ -1,49 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>ID:</strong>
-  <%= @worker.id %>
-</p>
+<h1>Информация о сотруднике</h1>
 
 <p>
-  <strong>Lastname:</strong>
+  <strong>Фамилия:</strong>
   <%= @worker.lastname %>
 </p>
 
 <p>
-  <strong>Firstname:</strong>
+  <strong>Имя:</strong>
   <%= @worker.firstname %>
 </p>
 
 <p>
-  <strong>Fathername:</strong>
+  <strong>Отчество:</strong>
   <%= @worker.fathername %>
 </p>
 
 <p>
-  <strong>Birthday:</strong>
+  <strong>Дата рождения:</strong>
   <%= @worker.birthday %>
 </p>
 
 <p>
-  <strong>Workdate:</strong>
+  <strong>Дата поступления на работу:</strong>
   <%= @worker.workdate %>
 </p>
 
 <p>
-  <strong>Position:</strong>
+  <strong>Должность:</strong>
   <%= @worker.position %>
 </p>
 
 <p>
-  <strong>Education:</strong>
+  <strong>Образование:</strong>
   <%= @worker.education %>
 </p>
 
-<p>
-  <strong>Lib:</strong>
-  <%= @worker.lib.name %>
-</p>
+<hr>
 
-<%= link_to 'Edit', edit_worker_path(@worker) %> |
-<%= link_to 'Back', workers_path %>
+<%= link_to 'Изменить', {:controller => :workers, :action => :edit}, :params => {:lib_id => @worker.lib, :id => @worker} %> |
+<%= link_to 'Удалить', [@worker.lib, @worker], method: :delete, data: { confirm: 'Ты уверен?' } %>
+<br>
+<%= link_to 'Назад', lib_workers_path %>
