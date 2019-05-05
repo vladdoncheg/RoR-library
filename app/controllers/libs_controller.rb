@@ -35,7 +35,7 @@ class LibsController < ApplicationController
 
   def destroy
     @lib.destroy
-    redirect_to libs_url, notice: 'Библиотека успешно удалена.'
+    redirect_to libs_path, notice: 'Библиотека успешно удалена.'
   end
 
   def top

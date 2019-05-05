@@ -24,17 +24,21 @@ class ServsController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
     @serv = @book.servs.new(serv_params)
+    @lib = @book.lib
+    @reader = @lib.readers
 
     if @serv.save
-      redirect_to lib_book_servs_path, notice: 'Книга успешно добавлена в библиотеку.'
+      redirect_to lib_book_servs_path, notice: 'Выдача книги успешно добавлена.'
     else
       render :new
     end
   end
 
   def update
+    @lib = @book.lib
+    @reader = @lib.readers
     if @serv.update(serv_params)
-      redirect_to lib_book_serv_path, notice: 'Инфорация успешно обновлена.'
+      redirect_to lib_book_serv_path, notice: 'Инфорация о выдаче книги успешно обновлена.'
     else
       render :edit
     end
@@ -42,7 +46,7 @@ class ServsController < ApplicationController
 
   def destroy
     @serv.destroy
-    redirect_to lib_book_servs_url, notice: 'Информация успешно удалена.'
+    redirect_to lib_book_servs_path, notice: 'Информация о выдаче книги успешно удалена.'
   end
 
   private
