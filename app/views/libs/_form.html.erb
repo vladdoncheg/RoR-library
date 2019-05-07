@@ -1,8 +1,7 @@
 <%= form_with(model: lib, local: true) do |form| %>
   <% if lib.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(lib.errors.count, "error") %> prohibited this lib from being saved:</h2>
-
+    <h2>Ошибок найдено: <%= book.errors.count %></h2>
       <ul>
       <% lib.errors.full_messages.each do |message| %>
         <li><%= message %></li>
