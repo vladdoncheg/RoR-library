@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h1>Информация о книге</h1>
-</p>
+<h3 class="main">Информация о книге</h3>
 
 <p>
   <strong>Наименование:</strong>
@@ -36,16 +34,32 @@
 
 <p>
   <strong>Дата поступления:</strong>
-  <%= @book.date %>
+  <%= @book.date.strftime("%d-%m-%Y") %>
+</p>
+
+<p>
+  <strong>Статус:</strong>
+  <%= @status %>
 </p>
 
 <hr>
 
-<%= link_to 'Выдачи', lib_book_servs_path(@lib, @book) %> |
-<%= link_to 'Добавить выдачу', new_lib_book_serv_path(@lib, @book) %>
-<br>
-<%= link_to 'Изменить', {:controller => :books, :action => :edit}, :params => {:lib_id => @book.lib, :id => @book} %> |
-<%= link_to 'Удалить', [@book.lib, @book], method: :delete, data: { confirm: 'Ты уверен?' } %>
-<br>
-<%= link_to 'Назад', lib_books_path %>
+<strong>Выдачи:</strong> 
+<%= link_to 'Показать', lib_book_servs_path(@lib, @book) %> |
+<%= link_to 'Добавить', new_lib_book_serv_path(@lib, @book) %>
 
+<hr>
+
+<div class="tools">
+  <div class="actions btn-group btn-group-toggle" data-toggle="buttons">
+    <%= link_to 'Изменить', {:controller => :books, :action => :edit}, 
+                            :params => {:lib_id => @book.lib, :id => @book}, 
+                            :class => "btn btn-sm btn-outline-info" %>
+    <%= link_to 'Удалить', [@book.lib, @book], method: :delete, 
+                           data: { confirm: 'Ты уверен?' }, 
+                           :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', lib_books_path, :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>

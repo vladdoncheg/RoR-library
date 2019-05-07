@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
+<p id="alert" style="color: red"><%= alert %></p>
 
-<h1>Список абонентов библиотеки <<%= @lib.name %>></h1>
+<h3 class="main">Список абонентов библиотеки <strong><%= @lib.name %></strong></h3>
 
-<table>
+<br>
+
+<table class="col-md-12">
   <thead>
     <tr>
       <th>Номер билета</th>
@@ -11,6 +14,7 @@
       <th>Отчество</th>
       <th>Адрес</th>
       <th>Телефон</th>
+      <th>Книг "на руках"</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,23 +22,42 @@
   <tbody>
     <% @readers.each do |reader| %>
       <tr>
+        <% count = reader.servs.where("finish IS ?", nil).count %>
         <td><%= reader.number %></td>
         <td><%= reader.lastname %></td>
         <td><%= reader.firstname %></td>
         <td><%= reader.fathername %></td>
         <td><%= reader.adress %></td>
         <td><%= reader.phone %></td>
+        <td><%= count %></td>
         <td><%= link_to 'Показать', lib_reader_path(reader.lib, reader) %></td>
         <td><%= link_to 'Изменить', edit_lib_reader_path(reader.lib, reader) %></td>
-        <td><%= link_to 'Удалить', [reader.lib, reader], method: :delete, data: { confirm: 'Ты уверен?' } %></td>
+        <td><%= link_to 'Удалить', [reader.lib, reader], method: :delete, 
+                                    data: { confirm: 'Ты уверен?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<br>
+
+<div class="paginator-parent">
+  <div class="paginator-child">
+    <%= will_paginate(@readers, :link_separator => ']-[', 
+                                :previous_label => '[Предыдущая страница', 
+                                :next_label => 'Следующая страница]', 
+                                :inner_window => 1, :outer_window => 1) %>
+  </div>
+</div>
+
 <hr>
 
-<%= link_to 'Добавить абонента', new_lib_reader_path(@lib) %>
-<br>
-<%= link_to 'Главная', root_path %> |
-<%= link_to 'Назад', lib_path(@lib) %>
+<div class="tools">
+  <div class="actions">
+    <%= link_to 'Добавить абонента', new_lib_reader_path(@lib), 
+                                     :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', lib_path(@lib), :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 class Reader < ApplicationRecord
   belongs_to :lib
-  has_many :servs
+  has_many :servs, dependent: :destroy
   
   validates :number, presence: true, length: { maximum: 38}
   validates :lastname, presence: true, length: { maximum: 100}

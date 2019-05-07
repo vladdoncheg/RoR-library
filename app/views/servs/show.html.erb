@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Информация о выдаче</h1>
+<h3 class="main">Информация о выдаче</h3>
+
+<p>
+  <strong>Абонент</strong>
+  <%= @serv.reader.values %>
+</p>
 
 <p>
   <strong>Дата выдачи:</strong>
@@ -9,12 +14,25 @@
 
 <p>
   <strong>Дата возврата:</strong>
-  <%= @serv.finish %>
+  <% if @serv.finish %>
+    <%= @serv.finish %>
+  <% else %>
+    Не указано
+  <% end %>
 </p>
 
 <hr>
 
-<%= link_to 'Изменить', {:controller => :servs, :action => :edit}, :params => {:book_id => @serv.book, :id => @serv} %> |
-<%= link_to 'Удалить', [@serv.book.lib, @serv.book, @serv], method: :delete, data: { confirm: 'Ты уверен?' } %>
-<br>
-<%= link_to 'Назад', lib_book_servs_path %>
+<div class="tools">
+  <div class="actions btn-group btn-group-toggle" data-toggle="buttons">
+    <%= link_to 'Изменить', {:controller => :servs, :action => :edit}, 
+                             :params => {:book_id => @serv.book, :id => @serv}, 
+                             :class => "btn btn-sm btn-outline-info" %>
+    <%= link_to 'Удалить', [@serv.book.lib, @serv.book, @serv], method: :delete, 
+                            data: { confirm: 'Ты уверен?' }, 
+                            :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', lib_book_servs_path, :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>

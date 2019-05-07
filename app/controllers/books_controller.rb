@@ -3,10 +3,20 @@ class BooksController < ApplicationController
 
   def index
     @lib = Lib.find(params[:lib_id])
-    @books = @lib.books.all
+    @books = @lib.books.all.paginate page: params[:page], per_page: 20
   end
 
   def show
+    @last_serv = @book.servs.order('start desc').first
+    if @last_serv
+      if @last_serv.finish
+        @status = 'Свободна'
+      else
+        @status = 'Занята'
+      end
+    else
+      @status = 'Свободна'
+    end
   end
 
   def new
@@ -22,7 +32,7 @@ class BooksController < ApplicationController
     @book = @lib.books.new(book_params)
 
     if @book.save
-      redirect_to lib_books_path, notice: 'Книга успешно добавлена в библиотеку.'
+      redirect_to lib_books_path, notice: 'Книга успешно добавлена в библиотеку'
     else
       render :new
     end
@@ -30,7 +40,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to lib_book_path, notice: 'Информация о книге успешно обновлена.'
+      redirect_to lib_book_path, notice: 'Информация о книге успешно обновлена'
     else
       render :edit
     end
@@ -38,7 +48,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to lib_books_path, notice: 'Книга успешно удалена из библиотеки.'
+    redirect_to lib_books_path, notice: 'Книга успешно удалена из библиотеки'
   end
 
   private
@@ -48,6 +58,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:name, :author, :code, :publisher, :year, :price, :date, :lib_id)
+      params.require(:book).permit(:name, :author, :code, :publisher, :year, :price, 
+                                   :date, :lib_id)
     end
 end

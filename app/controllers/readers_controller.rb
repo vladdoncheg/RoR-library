@@ -3,10 +3,12 @@ class ReadersController < ApplicationController
 
   def index
     @lib = Lib.find(params[:lib_id])
-    @readers = @lib.readers.all
+    @readers = @lib.readers.all.paginate page: params[:page], per_page: 20
   end
 
   def show
+    @count = @reader.servs.where("finish IS ?", nil).count
+
   end
 
   def new
@@ -22,7 +24,7 @@ class ReadersController < ApplicationController
     @reader = @lib.readers.new(reader_params)
 
     if @reader.save
-      redirect_to lib_readers_path, notice: 'Абонент успешно добавлен в библиотеку.'
+      redirect_to lib_readers_path, notice: 'Абонент успешно добавлен в библиотеку'
     else
       render :new
     end
@@ -30,7 +32,7 @@ class ReadersController < ApplicationController
 
   def update
     if @reader.update(reader_params)
-      redirect_to lib_reader_path, notice: 'Информация об абоненте успешно обновлена.'
+      redirect_to lib_reader_path, notice: 'Информация об абоненте успешно обновлена'
     else
       render :edit
     end
@@ -38,7 +40,7 @@ class ReadersController < ApplicationController
 
   def destroy
     @reader.destroy
-    redirect_to lib_readers_path, notice: 'Абонент успешно удалён из библиотеки.'
+    redirect_to lib_readers_path, notice: 'Абонент успешно удалён из библиотеки'
   end
 
   private
@@ -48,6 +50,7 @@ class ReadersController < ApplicationController
     end
 
     def reader_params
-      params.require(:reader).permit(:number, :lastname, :firstname, :fathername, :adress, :phone, :lib_id)
+      params.require(:reader).permit(:number, :lastname, :firstname, :fathername, 
+                                     :adress, :phone, :lib_id)
     end
 end

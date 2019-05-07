@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
+<p id="alert" style="color: red"><%= alert %></p>
 
-<h1>Список библиотек</h1>
+<h3 class="main">Список библиотек</h3>
 
-<table>
+<br>
+
+<table class="col-md-12">
   <thead>
     <tr>
       <th>Номер</th>
@@ -20,15 +23,32 @@
         <td><%= lib.adress %></td>
         <td><%= link_to 'Показать', lib %></td>
         <td><%= link_to 'Изменить', edit_lib_path(lib) %></td>
-        <td><%= link_to 'Удалить', lib, method: :delete, data: { confirm: 'Ты уверен?' } %></td>
+        <td><%= link_to 'Удалить', lib, method: :delete, 
+                                   data: { confirm: 'Ты уверен?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<br>
+
+<div class="paginator-parent">
+  <div class="paginator-child">
+    <%= will_paginate(@libs, :link_separator => ']-[', 
+                             :previous_label => '[Предыдущая страница', 
+                             :next_label => 'Следующая страница]', 
+                             :inner_window => 1, :outer_window => 1) %>
+  </div>
+</div>
+
 <hr>
 
-<%= link_to 'Добавить библиотеку', new_lib_path %>
-<br>
-<%= link_to 'Главная страница', root_path %>
+<div class="tools">
+  <div class="actions">
+    <%= link_to 'Добавить библиотеку', new_lib_path, :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', root_path, :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>
 

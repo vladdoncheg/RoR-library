@@ -2,7 +2,7 @@ class LibsController < ApplicationController
   before_action :set_lib, only: [:show, :edit, :update, :destroy]
 
   def index
-    @libs = Lib.all
+    @libs = Lib.all.paginate page: params[:page], per_page: 20
   end
 
   def show
@@ -19,7 +19,7 @@ class LibsController < ApplicationController
     @lib = Lib.new(lib_params)
 
     if @lib.save
-      redirect_to @lib, notice: 'Библиотека успешно добавлена.'
+      redirect_to @lib, notice: 'Библиотека успешно добавлена'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class LibsController < ApplicationController
 
   def update
     if @lib.update(lib_params)
-      redirect_to @lib, notice: 'Информация о библиотеке успешно обновлена.'
+      redirect_to @lib, notice: 'Информация о библиотеке успешно обновлена'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class LibsController < ApplicationController
 
   def destroy
     @lib.destroy
-    redirect_to libs_path, notice: 'Библиотека успешно удалена.'
+    redirect_to libs_path, notice: 'Библиотека успешно удалена'
   end
 
   def top

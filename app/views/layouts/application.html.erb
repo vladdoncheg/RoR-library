@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LibraryPg</title>
+    <title>Менеджер библиотек</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container"> 
+      <div class="bg_2 d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white">
+        <h4 class="my-0 mr-md-auto font-weight-bold">Менеджер библиотек</h4>
+        <nav class="my-2 my-md-0 mr-md-0">
+          <a class="btn btn-outline-dark" href="/libs">Список</a>
+          <a class="btn btn-outline-dark" href="/">Главная</a>
+        </nav>
+      </div>
+
+      <div class="bg_1 col-md-12 order-md-1 bg-white"> 
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

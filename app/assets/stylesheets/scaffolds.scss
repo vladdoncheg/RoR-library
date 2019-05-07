@@ -1,5 +1,6 @@
 body {
   background-color: #fff;
+  background-image: image-url('image.jpg');
   color: #333;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -19,31 +20,53 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
+.tools{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
 }
 
-th {
-  padding-bottom: 5px;
+table {
+  table-layout: fixed;     
+  width:100%;
 }
 
-td {
-  padding: 0 5px 7px;
-}
+th { 
+  text-align: left; 
+  background: #ccc;
+  padding: 5px; 
+  border: 1px solid black; 
+ }
+ td { 
+  padding: 5px;
+  border: 1px solid black;
+  word-wrap: break-word;
+ }
 
 div {
+  .bg_1 {
+    border-radius: 10px;
+    opacity: 0.9;
+    padding: 1px 5px 10px 5px;
+  }
+  .bg_2 {
+    border-radius: 10px;
+    opacity: 0.9;
+  }
+  .paginator-parent {
+    text-align: center;
+  }
+  .paginator-child {
+    display:inline-block;
+  }
   &.field, &.actions {
     margin-bottom: 10px;
+    font-weight: bold;
   }
+}
+
+h3.main {
+  text-align: center;
 }
 
 #notice {

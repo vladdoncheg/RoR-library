@@ -3,7 +3,7 @@ class WorkersController < ApplicationController
 
   def index
     @lib = Lib.find(params[:lib_id])
-    @workers = @lib.workers.all
+    @workers = @lib.workers.all.paginate page: params[:page], per_page: 20
   end
 
   def show
@@ -22,7 +22,7 @@ class WorkersController < ApplicationController
     @worker = @lib.workers.new(worker_params)
 
     if @worker.save
-      redirect_to lib_workers_path, notice: 'Сотрудник успешно добавлен в библиотеку.'
+      redirect_to lib_workers_path, notice: 'Сотрудник успешно добавлен в библиотеку'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class WorkersController < ApplicationController
 
   def update
     if @worker.update(worker_params)
-      redirect_to lib_worker_path, notice: 'Информация о сотруднике успешно обновлена.'
+      redirect_to lib_worker_path, notice: 'Информация о сотруднике успешно обновлена'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class WorkersController < ApplicationController
 
   def destroy
     @worker.destroy
-    redirect_to lib_workers_path, notice: 'Сотрудник успешно удалён из библиотеки.'
+    redirect_to lib_workers_path, notice: 'Сотрудник успешно удалён из библиотеки'
   end
 
   private
@@ -48,6 +48,7 @@ class WorkersController < ApplicationController
     end
 
     def worker_params
-      params.require(:worker).permit(:lastname, :firstname, :fathername, :birthday, :workdate, :position, :education, :lib_id)
+      params.require(:worker).permit(:lastname, :firstname, :fathername, :birthday, 
+                                     :workdate, :position, :education, :lib_id)
     end
 end

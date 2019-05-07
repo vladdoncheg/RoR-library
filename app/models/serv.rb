@@ -10,20 +10,20 @@ class Serv < ApplicationRecord
   def finish_cannot_be_lower_than_start
     if finish
       if finish < start
-        errors.add(:finish, "не может быть меньше, чем дата выдачи.")
+        errors.add(:finish, "Дата возврата не может быть меньше, чем дата выдачи")
       end
     end
   end 
 
   def start_cannot_be_in_the_future
     if start.present? && start > Date.today
-      errors.add(:start, 'Дата выдачи не может быть в будущем.')
+      errors.add(:start, 'Дата выдачи не может быть в будущем')
     end
   end
 
   def finish_cannot_be_in_the_future
     if finish.present? && finish > Date.today
-      errors.add(:finish, 'Дата возврата не может быть в будущем.')
+      errors.add(:finish, 'Дата возврата не может быть в будущем')
     end
   end
 

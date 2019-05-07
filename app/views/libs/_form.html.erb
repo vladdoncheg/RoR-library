@@ -12,21 +12,29 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :number, 'Номер' %>
-    <%= form.text_field :number %>
+    <%= form.label :number, 'Номер:' %>
+    <%= form.text_field :number, :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :name, 'Назавание' %>
-    <%= form.text_area :name %>
+    <%= form.label :name, 'Назавание:' %>
+    <%= form.text_area :name, :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :adress, 'Адрес' %>
-    <%= form.text_area :adress %>
+    <%= form.label :adress, 'Адрес:' %>
+    <%= form.text_area :adress, :class => 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit 'Подтвердить' %>
+  <hr>
+
+  <div class="tools">
+    <div class="actions">
+      <%= form.submit 'Подтвердить', :class => 'btn btn-outline-success btn-sm' %>
+    </div>
+    <div class="actions">
+      <%= link_to 'Назад', x, :class => 'btn btn-outline-danger btn-sm' %>
+    </div>
   </div>
+
 <% end %>

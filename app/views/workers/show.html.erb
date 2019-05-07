@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Информация о сотруднике</h1>
+<h3 class="main">Информация о сотруднике</h3>
 
 <p>
   <strong>Фамилия:</strong>
@@ -39,7 +39,16 @@
 
 <hr>
 
-<%= link_to 'Изменить', {:controller => :workers, :action => :edit}, :params => {:lib_id => @worker.lib, :id => @worker} %> |
-<%= link_to 'Удалить', [@worker.lib, @worker], method: :delete, data: { confirm: 'Ты уверен?' } %>
-<br>
-<%= link_to 'Назад', lib_workers_path %>
+<div class="tools">
+  <div class="actions btn-group btn-group-toggle" data-toggle="buttons">
+    <%= link_to 'Изменить', {:controller => :workers, :action => :edit}, 
+                             :params => {:lib_id => @worker.lib, :id => @worker}, 
+                             :class => "btn btn-sm btn-outline-info" %>
+    <%= link_to 'Удалить', [@worker.lib, @worker], method: :delete, 
+                            data: { confirm: 'Ты уверен?' }, 
+                            :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', lib_workers_path, :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>

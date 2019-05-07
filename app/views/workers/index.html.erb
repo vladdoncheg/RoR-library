@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
+<p id="alert" style="color: red"><%= alert %></p>
 
-<h1>Список сотрудников библиотеки <<%= @lib.name %>></h1>
+<h3 class="main">Список сотрудников библиотеки <strong><%= @lib.name %></strong></h3>
 
-<table>
+<br>
+
+<table class="col-md-12">
   <thead>
     <tr>
       <th>Фамилия</th>
@@ -28,13 +31,32 @@
         <td><%= worker.education %></td>
         <td><%= link_to 'Показать', lib_worker_path(worker.lib, worker) %></td>
         <td><%= link_to 'Изменить', edit_lib_worker_path(worker.lib, worker) %></td>
-        <td><%= link_to 'Удалить', [worker.lib, worker], method: :delete, data: { confirm: 'Ты уверен?' } %></td>      </tr>
+        <td><%= link_to 'Удалить', [worker.lib, worker], method: :delete, 
+                                    data: { confirm: 'Ты уверен?' } %></td>      
+      </tr>
     <% end %>
   </tbody>
 </table>
 
-<hr>
-<%= link_to 'Добавить сотрудника', new_lib_worker_path(@lib) %>
 <br>
-<%= link_to 'Главная', root_path %> |
-<%= link_to 'Назад', lib_path(@lib) %>
+
+<div class="paginator-parent">
+  <div class="paginator-child">
+    <%= will_paginate(@books, :link_separator => ']-[', 
+                              :previous_label => '[Предыдущая страница', 
+                              :next_label => 'Следующая страница]', 
+                              :inner_window => 1, :outer_window => 1) %>
+  </div>
+</div>
+
+<hr>
+
+<div class="tools">
+  <div class="actions">
+    <%= link_to 'Добавить сотрудника', new_lib_worker_path(@lib), 
+                                       :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', lib_path(@lib), :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>

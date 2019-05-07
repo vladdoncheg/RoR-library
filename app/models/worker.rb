@@ -10,7 +10,7 @@ class Worker < ApplicationRecord
 
   def workdate_cannot_be_in_the_future
     if workdate.present? && workdate > Date.today
-      errors.add(:workdate, 'Дата поступления не может быть в будущем.')
+      errors.add(:workdate, 'Дата поступления не может быть в будущем')
     end
   end
 

@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h1>Информация об абоненте</h1>
-</p>
+<h3 class="main">Информация об абоненте</h3>
 
 <p>
   <strong>Номер билета:</strong>
@@ -34,9 +32,23 @@
   <%= @reader.phone %>
 </p>
 
+<p>
+  <strong>Книг "на руках":</strong>
+  <%= @count %>
+</p>
+
 <hr>
 
-<%= link_to 'Изменить', {:controller => :readers, :action => :edit}, :params => {:lib_id => @reader.lib, :id => @reader} %> |
-<%= link_to 'Удалить', [@reader.lib, @reader], method: :delete, data: { confirm: 'Ты уверен?' } %>
-<br>
-<%= link_to 'Назад', lib_readers_path %>
+<div class="tools">
+  <div class="actions btn-group btn-group-toggle" data-toggle="buttons">
+    <%= link_to 'Изменить', {:controller => :readers, :action => :edit}, 
+                             :params => {:lib_id => @reader.lib, :id => @reader}, 
+                             :class => "btn btn-sm btn-outline-info" %>
+    <%= link_to 'Удалить', [@reader.lib, @reader], method: :delete, 
+                            data: { confirm: 'Ты уверен?' }, 
+                            :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', lib_readers_path, :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>

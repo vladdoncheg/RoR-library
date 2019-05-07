@@ -12,36 +12,44 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :number, 'Номер билета' %>
-    <%= form.number_field :number, :step => 1 %>
+    <%= form.label :number, 'Номер билета:' %>
+    <%= form.number_field :number, :step => 1, :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :lastname, 'Фамилия' %>
-    <%= form.text_field :lastname %>
+    <%= form.label :lastname, 'Фамилия:' %>
+    <%= form.text_field :lastname, :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :firstname, 'Имя' %>
-    <%= form.text_field :firstname %>
+    <%= form.label :firstname, 'Имя:' %>
+    <%= form.text_field :firstname, :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :fathername, 'Отчество' %>
-    <%= form.text_field :fathername %>
+    <%= form.label :fathername, 'Отчество:' %>
+    <%= form.text_field :fathername, :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :adress, 'Адрес' %>
-    <%= form.text_area :adress %>
+    <%= form.label :adress, 'Адрес:' %>
+    <%= form.text_area :adress, :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :phone, 'Телефон' %>
-    <%= form.telephone_field :phone %>
+    <%= form.label :phone, 'Телефон:' %>
+    <%= form.telephone_field :phone, :class => 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit 'Подтвердить' %>
+  <hr>
+
+  <div class="tools">
+    <div class="actions">
+      <%= form.submit 'Подтвердить', :class => 'btn btn-outline-success btn-sm' %>
+    </div>
+    <div class="actions">
+      <%= link_to 'Назад', x, :class => 'btn btn-outline-danger btn-sm' %>
+    </div>
   </div>
+
 <% end %>

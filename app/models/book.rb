@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :lib
-  has_many :servs
+  has_many :servs, dependent: :destroy
   
   validates :name, presence: true, length: { maximum: 2000}
   validates :author, length: { maximum: 1000}
@@ -12,7 +12,7 @@ class Book < ApplicationRecord
 
   def date_cannot_be_in_the_future
     if date.present? && date > Date.today
-      errors.add(:date, 'Дата поступления не может быть в будущем.')
+      errors.add(:date, 'Дата поступления не может быть в будущем')
     end
   end
 

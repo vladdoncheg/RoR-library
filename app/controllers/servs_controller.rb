@@ -3,7 +3,7 @@ class ServsController < ApplicationController
 
   def index
     @book = Book.find(params[:book_id])
-    @servs = @book.servs.all
+    @servs = @book.servs.all.paginate page: params[:page], per_page: 20
   end
 
   def show
@@ -26,11 +26,25 @@ class ServsController < ApplicationController
     @serv = @book.servs.new(serv_params)
     @lib = @book.lib
     @reader = @lib.readers
+    @last_serv = @book.servs.order('start desc').first
 
-    if @serv.save
-      redirect_to lib_book_servs_path, notice: 'Выдача книги успешно добавлена.'
+    if @last_serv
+      if @last_serv.finish
+        if @serv.save
+          redirect_to lib_book_servs_path, notice: 'Выдача книги успешно добавлена'
+        else
+          render :new
+        end
+      else
+        redirect_to lib_book_servs_path, alert: 'Действие невозможно выполнить. 
+                                                Книга не возвращена прошлым абонентом'
+      end
     else
-      render :new
+      if @serv.save
+        redirect_to lib_book_servs_path, notice: 'Выдача книги успешно добавлена'
+      else
+        render :new
+      end
     end
   end
 
@@ -38,7 +52,7 @@ class ServsController < ApplicationController
     @lib = @book.lib
     @reader = @lib.readers
     if @serv.update(serv_params)
-      redirect_to lib_book_serv_path, notice: 'Инфорация о выдаче книги успешно обновлена.'
+      redirect_to lib_book_serv_path, notice: 'Инфорация о выдаче книги успешно обновлена'
     else
       render :edit
     end
@@ -46,7 +60,7 @@ class ServsController < ApplicationController
 
   def destroy
     @serv.destroy
-    redirect_to lib_book_servs_path, notice: 'Информация о выдаче книги успешно удалена.'
+    redirect_to lib_book_servs_path, notice: 'Информация о выдаче книги успешно удалена'
   end
 
   private

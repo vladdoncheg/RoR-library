@@ -1,5 +1,4 @@
-<h1>Редактирование библиотеки</h1>
+<br>
+<h3 class="main">Редактирование библиотеки</h3>
 
-<%= render 'form', lib: @lib %>
-
-<%= link_to 'Назад', lib_path(@lib) %>
+<%= render 'form', lib: @lib, x: lib_path(@lib) %>

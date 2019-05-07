@@ -1,21 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h1><%= @lib.name %></h1>
-</p>
+<h3 class="main">Информация о библиотеке</h3>
+
 <p>
   <strong>Номер:</strong>
   <%= @lib.number %>
 </p>
 
 <p>
-  <strong>Адрес:</strong>
-  <%= @lib.adress %>
+  <strong>Наименование:</strong>
+  <%= @lib.name %>
 </p>
 
 <p>
-  <%= link_to 'Изменить', edit_lib_path(@lib) %> |
-  <%= link_to 'Удалить', @lib, method: :delete, data: { confirm: 'Ты уверен?' } %>
+  <strong>Адрес:</strong>
+  <%= @lib.adress %>
 </p>
 
 <hr>
@@ -43,6 +42,18 @@
 
 <hr>
 
-<%= link_to 'Топ-10 книг', top_path(@lib) %>
-<br>
-<%= link_to 'К списку библиотек', libs_path %>
+<div class="tools">
+  <div class="actions btn-group btn-group-toggle" data-toggle="buttons">
+    <%= link_to 'Изменить', {:controller => :libs, :action => :edit}, 
+                            :params => {:lib_id => @lib}, 
+                            :class => "btn btn-sm btn-outline-info" %>
+    <%= link_to 'Удалить', @lib, method: :delete, data: { confirm: 'Ты уверен?' }, 
+                           :class => "btn btn-sm btn-outline-info" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Топ-10 книг', top_path(@lib), :class => "btn btn-sm btn-outline-primary" %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Назад', libs_path, :class => "btn btn-sm btn-outline-danger" %>
+  </div>
+</div>
