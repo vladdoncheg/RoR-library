@@ -1,7 +1,7 @@
 <%= form_for worker, url: x do |form| %>
   <% if worker.errors.any? %>
     <div id="error_explanation">
-    <h2>Ошибок найдено: <%= book.errors.count %></h2>
+    <h2>Ошибок найдено: <%= worker.errors.count %></h2>
       <ul>
       <% worker.errors.full_messages.each do |message| %>
         <li><%= message %></li>

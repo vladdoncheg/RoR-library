@@ -1,7 +1,7 @@
 <%= form_for serv, url: x do |form| %>
   <% if serv.errors.any? %>
     <div id="error_explanation">
-    <h2>Ошибок найдено: <%= book.errors.count %></h2>
+    <h2>Ошибок найдено: <%= serv.errors.count %></h2>
       <ul>
       <% serv.errors.full_messages.each do |message| %>
         <li><%= message %></li>
