@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   validates :author, length: { maximum: 1000}
   validates :code, presence: true, length: { maximum: 100}
   validates :publisher, length: { maximum: 256}
-  validates :year, length: { maximum: 38}, numericality: { greater_than_or_equal_to: 1000 }
+  validates :year, length: { maximum: 38}, numericality: { greater_than_or_equal_to: 1000, less_than_or_equal_to: Date.today.year }
   validates :price, length: { maximum: 10}, numericality: { greater_than_or_equal_to: 0 }
   validate :date_cannot_be_in_the_future
 
