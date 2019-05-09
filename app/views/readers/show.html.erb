@@ -29,7 +29,7 @@
 
 <p>
   <strong>Телефон:</strong>
-  <%= @reader.phone %>
+  <%= number_to_phone(@reader.phone, country_code: 7) %>
 </p>
 
 <p>

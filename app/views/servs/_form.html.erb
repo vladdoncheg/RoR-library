@@ -1,19 +1,14 @@
 <%= form_for serv, url: x do |form| %>
-  <% if serv.errors.any? %>
-    <div id="error_explanation">
-    <h2>Ошибок найдено: <%= serv.errors.count %></h2>
-      <ul>
-      <% serv.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.label :reader_id, 'Абонент:' %>
     <%= form.collection_select :reader_id, @reader, :id, :values, 
                                {prompt: true}, {class: "form-control"} %>
+    <% if serv.errors[:reader_id].any? %>
+      <% serv.errors[:reader_id].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -21,9 +16,16 @@
     <div class="form-inline">
       <%= form.date_select :start, {order: [:day, :month, :year], 
                             prompt: { day: 'День', month: 'Месяц', year: 'Год' }, 
-                            start_year: Date.today.year, end_year: Date.today.year - 100}, 
-                            :class => 'form-control' %>
-    </div
+                            start_year: Date.today.year, 
+                            end_year: Date.today.year - 100,
+                            selected: serv.start || Date.today}, 
+                            :class => 'form-control col-md-4' %>
+    </div>
+    <% if serv.errors[:start].any? %>
+      <% serv.errors[:start].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -31,9 +33,15 @@
     <div class="form-inline">
       <%= form.date_select :finish, {order: [:day, :month, :year], 
                             prompt: { day: 'День', month: 'Месяц', year: 'Год' }, 
-                            start_year: Date.today.year, end_year: Date.today.year - 100}, 
-                            :class => 'form-control' %>
+                            start_year: Date.today.year, 
+                            end_year: Date.today.year - 100}, 
+                            :class => 'form-control col-md-4' %>
     </div>
+    <% if serv.errors[:finish].any? %>
+      <% serv.errors[:finish].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <hr>

@@ -14,6 +14,11 @@ class ServsController < ApplicationController
     @serv = @book.servs.new
     @lib = @book.lib
     @reader = @lib.readers
+    @busy = @book.servs.where('finish is null')
+    if @busy.any?
+      redirect_to lib_book_servs_path, alert: 'Действие невозможно выполнить. 
+                                               Книга не возвращена прошлым абонентом'
+    end
   end
 
   def edit
@@ -26,25 +31,10 @@ class ServsController < ApplicationController
     @serv = @book.servs.new(serv_params)
     @lib = @book.lib
     @reader = @lib.readers
-    @last_serv = @book.servs.order('start desc').first
-
-    if @last_serv
-      if @last_serv.finish
-        if @serv.save
-          redirect_to lib_book_servs_path, notice: 'Выдача книги успешно добавлена'
-        else
-          render :new
-        end
-      else
-        redirect_to lib_book_servs_path, alert: 'Действие невозможно выполнить. 
-                                                Книга не возвращена прошлым абонентом'
-      end
+    if @serv.save
+      redirect_to lib_book_servs_path, notice: 'Выдача книги успешно добавлена'
     else
-      if @serv.save
-        redirect_to lib_book_servs_path, notice: 'Выдача книги успешно добавлена'
-      else
-        render :new
-      end
+      render :new
     end
   end
 

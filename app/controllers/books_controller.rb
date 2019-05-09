@@ -7,13 +7,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @last_serv = @book.servs.order('start desc').first
-    if @last_serv
-      if @last_serv.finish
-        @status = 'Свободна'
-      else
-        @status = 'Занята'
-      end
+    @busy = @book.servs.where('finish is null')
+    if @busy.any?
+      @status = 'Занята'
     else
       @status = 'Свободна'
     end

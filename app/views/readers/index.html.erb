@@ -28,7 +28,7 @@
         <td><%= reader.firstname %></td>
         <td><%= reader.fathername %></td>
         <td><%= reader.adress %></td>
-        <td><%= reader.phone %></td>
+        <td><%= number_to_phone(reader.phone, country_code: 7) %></td>
         <td><%= count %></td>
         <td><%= link_to 'Показать', lib_reader_path(reader.lib, reader) %></td>
         <td><%= link_to 'Изменить', edit_lib_reader_path(reader.lib, reader) %></td>

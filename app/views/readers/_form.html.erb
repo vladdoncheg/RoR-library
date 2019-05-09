@@ -1,43 +1,63 @@
 <%= form_for reader, url: x do |form| %>
-  <% if reader.errors.any? %>
-    <div id="error_explanation">
-    <h2>Ошибок найдено: <%= reader.errors.count %></h2>
-      <ul>
-      <% reader.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.label :number, 'Номер билета:' %>
-    <%= form.number_field :number, :step => 1, :class => 'form-control' %>
+    <%= form.number_field :number, :step => 1, autofocus: true, :class => 'form-control' %>
+    <% if reader.errors[:number].any? %>
+      <% reader.errors[:number].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :lastname, 'Фамилия:' %>
     <%= form.text_field :lastname, :class => 'form-control' %>
+    <% if reader.errors[:lastname].any? %>
+      <% reader.errors[:lastname].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :firstname, 'Имя:' %>
     <%= form.text_field :firstname, :class => 'form-control' %>
+    <% if reader.errors[:firstname].any? %>
+      <% reader.errors[:firstname].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :fathername, 'Отчество:' %>
     <%= form.text_field :fathername, :class => 'form-control' %>
+    <% if reader.errors[:fathername].any? %>
+      <% reader.errors[:fathername].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :adress, 'Адрес:' %>
     <%= form.text_area :adress, :class => 'form-control' %>
+    <% if reader.errors[:adress].any? %>
+      <% reader.errors[:adress].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
-    <%= form.label :phone, 'Телефон:' %>
-    <%= form.telephone_field :phone, :class => 'form-control' %>
+    <%= form.label :phone, 'Номер телефона (10 цифр):' %>
+    <%= form.telephone_field :phone, :pattern => '\d{10}', :class => 'form-control' %>
+    <% if reader.errors[:phone].any? %>
+      <% reader.errors[:phone].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <hr>

@@ -1,54 +1,78 @@
 <%= form_for book, url: x do |form| %>
-  <% if book.errors.any? %>
-    <div id="error_explanation">
-      <h2>Ошибок найдено: <%= book.errors.count %></h2>
-      <ul>
-      <br>
-      <% book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.label :name, 'Наименование:' %>
-    <%= form.text_area :name, :class => 'form-control' %>
+    <%= form.text_area :name, autofocus: true, :class => 'form-control' %>
+    <% if book.errors[:name].any? %>
+      <% book.errors[:name].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :author, 'Автор:' %>
     <%= form.text_area :author, :class => 'form-control' %>
+    <% if book.errors[:author].any? %>
+      <% book.errors[:author].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :code, 'Шифр:' %>
     <%= form.text_field :code, :class => 'form-control' %>
+    <% if book.errors[:code].any? %>
+      <% book.errors[:code].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :publisher, 'Издательство:' %>
     <%= form.text_area :publisher, :class => 'form-control' %>
+    <% if book.errors[:publisher].any? %>
+      <% book.errors[:publisher].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :year, 'Год издания:' %>
     <%= form.number_field :year, :step => 1, :class => 'form-control' %>
+    <% if book.errors[:year].any? %>
+      <% book.errors[:year].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :price, 'Цена:' %>
     <%= form.number_field :price, :step => 0.01, :class => 'form-control' %>
+    <% if book.errors[:price].any? %>
+      <% book.errors[:price].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :date, 'Дата поступления:' %>
     <div class="form-inline">
       <%= form.date_select :date, {order: [:day, :month, :year], 
-                           prompt: { day: 'День', month: 'Месяц', year: 'Год' }, 
-                           start_year: Date.today.year, end_year: Date.today.year - 100}, 
-                           :class => 'form-control' %>
+                            prompt: { day: 'День', month: 'Месяц', year: 'Год' }, 
+                            start_year: Date.today.year, end_year: Date.today.year - 100}, 
+                           :class => 'form-control col-md-4' %>
     </div>
+    <% if book.errors[:date].any? %>
+      <% book.errors[:date].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <hr>
@@ -61,4 +85,5 @@
       <%= link_to 'Назад', x, :class => 'btn btn-outline-danger btn-sm' %>
     </div>
   </div>
+  
 <% end %>

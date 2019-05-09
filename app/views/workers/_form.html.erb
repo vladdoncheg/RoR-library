@@ -1,28 +1,33 @@
 <%= form_for worker, url: x do |form| %>
-  <% if worker.errors.any? %>
-    <div id="error_explanation">
-    <h2>Ошибок найдено: <%= worker.errors.count %></h2>
-      <ul>
-      <% worker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.label :lastname, 'Фамилия:' %>
-    <%= form.text_field :lastname, :class => 'form-control' %>
+    <%= form.text_field :lastname, autofocus: true, :class => 'form-control' %>
+    <% if worker.errors[:lastname].any? %>
+      <% worker.errors[:lastname].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :firstname, 'Имя:' %>
     <%= form.text_field :firstname, :class => 'form-control' %>
+    <% if worker.errors[:firstname].any? %>
+      <% worker.errors[:firstname].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :fathername, 'Отчество:' %>
     <%= form.text_field :fathername, :class => 'form-control' %>
+    <% if worker.errors[:fathername].any? %>
+      <% worker.errors[:fathername].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -31,8 +36,13 @@
       <%= form.date_select :birthday, {order: [:day, :month, :year], 
                             prompt: { day: 'День', month: 'Месяц', year: 'Год' }, 
                             start_year: Date.today.year-14, end_year: Date.today.year - 100}, 
-                            :class => 'form-control' %>
+                            :class => 'form-control col-md-4' %>
     </div>
+    <% if worker.errors[:birthday].any? %>
+      <% worker.errors[:birthday].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -41,18 +51,33 @@
       <%= form.date_select :workdate, {order: [:day, :month, :year], 
                             prompt: { day: 'День', month: 'Месяц', year: 'Год' }, 
                             start_year: Date.today.year, end_year: Date.today.year - 100}, 
-                            :class => 'form-control' %>
+                            :class => 'form-control col-md-4' %>
     </div>
+    <% if worker.errors[:workdate].any? %>
+      <% worker.errors[:workdate].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :position, 'Должность:' %>
     <%= form.text_area :position, :class => 'form-control' %>
+    <% if worker.errors[:position].any? %>
+      <% worker.errors[:position].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :education, 'Образование:' %>
     <%= form.text_field :education, :class => 'form-control' %>
+    <% if worker.errors[:education].any? %>
+      <% worker.errors[:education].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <hr>

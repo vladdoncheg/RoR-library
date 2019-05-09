@@ -1,28 +1,33 @@
 <%= form_with(model: lib, local: true) do |form| %>
-  <% if lib.errors.any? %>
-    <div id="error_explanation">
-    <h2>Ошибок найдено: <%= lib.errors.count %></h2>
-      <ul>
-      <% lib.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= form.label :number, 'Номер:' %>
-    <%= form.text_field :number, :class => 'form-control' %>
+    <%= form.text_field :number, autofocus: true, :class => 'form-control' %>
+    <% if lib.errors[:number].any? %>
+      <% lib.errors[:number].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :name, 'Назавание:' %>
     <%= form.text_area :name, :class => 'form-control' %>
+    <% if lib.errors[:name].any? %>
+      <% lib.errors[:name].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :adress, 'Адрес:' %>
     <%= form.text_area :adress, :class => 'form-control' %>
+    <% if lib.errors[:adress].any? %>
+      <% lib.errors[:adress].each do |error| %>
+        <p style="text-indent: 10px; color: red;"><%= error.capitalize %></p>
+      <% end %>
+    <% end %>
   </div>
 
   <hr>

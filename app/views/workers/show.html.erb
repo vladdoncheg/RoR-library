@@ -19,12 +19,12 @@
 
 <p>
   <strong>Дата рождения:</strong>
-  <%= @worker.birthday %>
+  <%= @worker.birthday.strftime("%d.%m.%Y") %>
 </p>
 
 <p>
   <strong>Дата поступления на работу:</strong>
-  <%= @worker.workdate %>
+  <%= @worker.workdate.strftime("%d.%m.%Y") %>
 </p>
 
 <p>
