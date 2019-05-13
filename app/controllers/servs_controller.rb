@@ -3,7 +3,7 @@ class ServsController < ApplicationController
 
   def index
     @book = Book.find(params[:book_id])
-    @servs = @book.servs.all.paginate page: params[:page], per_page: 20
+    @servs = @book.servs.all.paginate page: params[:page], per_page: 5
   end
 
   def show

@@ -3,7 +3,7 @@ class ReadersController < ApplicationController
 
   def index
     @lib = Lib.find(params[:lib_id])
-    @readers = @lib.readers.all.paginate page: params[:page], per_page: 20
+    @readers = @lib.readers.all.paginate page: params[:page], per_page: 5
   end
 
   def show

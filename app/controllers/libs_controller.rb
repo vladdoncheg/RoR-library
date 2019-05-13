@@ -2,7 +2,7 @@ class LibsController < ApplicationController
   before_action :set_lib, only: [:show, :edit, :update, :destroy]
 
   def index
-    @libs = Lib.all.paginate page: params[:page], per_page: 20
+    @libs = Lib.all.paginate page: params[:page], per_page: 5
   end
 
   def show
