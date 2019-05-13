@@ -19,10 +19,10 @@
     <% @servs.each do |serv| %>
       <tr>
         <td><%= serv.reader.values %></td>
-        <td><%= serv.start.strftime("%d.%m.%Y") %></td>
+        <td><%= serv.start.try(:strftime, "%d.%m.%Y") %></td>
         <td>
           <% if serv.finish %>
-            <%= serv.finish.strftime("%d.%m.%Y") %>
+            <%= serv.finish.try(:strftime, "%d.%m.%Y") %>
           <% else %>
             Не указано
           <% end %>

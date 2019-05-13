@@ -35,7 +35,7 @@
         <td><%= book.publisher %></td>
         <td><%= book.year %></td>
         <td><%= book.price %></td>
-        <td><%= book.date.strftime("%d.%m.%Y") %></td>
+        <td><%= book.date.try(:strftime, "%d.%m.%Y") %></td>
         <td><%= status %></td>
         <td><%= link_to 'Показать', lib_book_path(book.lib, book) %></td>
         <td><%= link_to 'Изменить', edit_lib_book_path(book.lib, book) %></td>

@@ -9,13 +9,13 @@
 
 <p>
   <strong>Дата выдачи:</strong>
-  <%= @serv.start.strftime("%d.%m.%Y") %>
+  <%= @serv.start.try(:strftime, "%d.%m.%Y") %>
 </p>
 
 <p>
   <strong>Дата возврата:</strong>
   <% if @serv.finish %>
-    <%= @serv.finish.strftime("%d.%m.%Y") %>
+    <%= @serv.finish.try(:strftime, "%d.%m.%Y") %>
   <% else %>
     Не указано
   <% end %>

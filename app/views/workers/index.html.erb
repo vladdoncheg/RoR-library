@@ -25,8 +25,8 @@
         <td><%= worker.lastname %></td>
         <td><%= worker.firstname %></td>
         <td><%= worker.fathername %></td>
-        <td><%= worker.birthday.strftime("%d.%m.%Y") %></td>
-        <td><%= worker.workdate.strftime("%d.%m.%Y") %></td>
+        <td><%= worker.birthday.try(:strftime, "%d.%m.%Y") %></td>
+        <td><%= worker.workdate.try(:strftime, "%d.%m.%Y") %></td>
         <td><%= worker.position %></td>
         <td><%= worker.education %></td>
         <td><%= link_to 'Показать', lib_worker_path(worker.lib, worker) %></td>
